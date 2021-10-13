@@ -7,6 +7,9 @@
 <body>
 <h1>All Events</h1>
 
+<nav th:replace="fragments :: navigation"></nav>
+
+
 <p th:unless="${events} and ${events.size()}">NO EVENTS!</p>
 
 <!--loop to show all the events in a list -->
