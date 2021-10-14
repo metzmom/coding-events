@@ -17,10 +17,19 @@
             <th>Name evIndHtml</th>
         </tr>
     </thead>
-
+<!-- looping over a list of events as strings, in our table. Need to change to reflect list
+      of events with name property. NOT STRINGS!
     <tr th:block th:each="event : ${events}">
-        <td th:text="${event}"></td>
+       <td th:text="${event}"></td>
+    </tr> -->
+    <!--Now looping over a list of events as event objets, The list
+      of objects with name property  uses the getter for the name field..
+        which is private, so you need getters-->
+    <tr th:block th:each="event : ${events}">
+       <td th:text="${event.name}"></td>
     </tr>
+
+
 </table>
 
 </body>
