@@ -14,6 +14,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
+            <th>ID evIndHtml</th><!--added video 2.2-->
             <th>Name evIndHtml</th>
             <th>Description evIndHtml</th><!--added video 2.2-->
         </tr>
@@ -27,7 +28,8 @@
       of objects with name property  uses the getter for the name field..
         which is private, so you need getters-->
     <tr th:block th:each="event : ${events}">
-       <td th:text="${event.name}"></td>
+        <td th:text="${event.id}"></td><!--added video 2.3-->
+        <td th:text="${event.name}"></td>
         <td th:text="${event.description}"></td><!--added video 2.2-->
     </tr>
 
