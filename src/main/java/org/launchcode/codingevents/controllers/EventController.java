@@ -4,10 +4,7 @@ import org.launchcode.codingevents.data.EventData;
 import org.launchcode.codingevents.models.Event;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,15 +40,21 @@ public class EventController {
 
    //lives at /events/create
    @PostMapping("create")//create a new event from a form submission
-   public String createEvent(@RequestParam String eventName,
-                             @RequestParam String eventDescription) {//added event
-       // Description added in video 2.2
+
+   public String createEvent(@ModelAttribute Event newEvent) {//model binding video 2.6
+      EventData.add(newEvent);
+      // public String createEvent(@RequestParam String eventName,
+                         //    @RequestParam String eventDescription) {
+      // ***Remove the RequestParam and put in @ModelAttribute Event newEvent)
+      // }
+       // added eventDescription added in video 2.2
        // events.add(eventName);//take this out as it was a lists of strings but is now a list of objects
        //  events.add(new Event(eventName, eventDescription));//now takes an Event object.creates new event
        // object and passes it to a list // Description added in video 2.2
 
        //update to reflect the new EventData  video 2.4
-       EventData.add(new Event(eventName, eventDescription));
+       //This can be removed by Model binding video 2.6
+       //EventData.add(new Event(eventName, eventDescription));
        return "redirect:";//do not need /events after : as the path is still in events Controller
    }
 
