@@ -34,11 +34,15 @@ public class EventController {
    public String displayCreateEventForm() {
       return "events/create";
    }
+
    //lives at /events/create
    @PostMapping("create")
-   public String createEvent(@RequestParam String eventName){
+   public String createEvent(@RequestParam String eventName,
+                             @RequestParam String eventDescription){//added event
+       // Description added in video 2.2
      // events.add(eventName);//take this out as it was a lists of strings but is now a list of objects
-      events.add(new Event(eventName));//now takes an Event object.creates new event object and passes it to a list
+      events.add(new Event(eventName, eventDescription));//now takes an Event object.creates new event
+       // object and passes it to a list // Description added in video 2.2
       return "redirect:";//do not need /events after : as the path is still in events Controller
 
 

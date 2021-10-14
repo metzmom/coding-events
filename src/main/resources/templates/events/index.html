@@ -15,6 +15,7 @@
     <thead>
         <tr>
             <th>Name evIndHtml</th>
+            <th>Description evIndHtml</th><!--added video 2.2-->
         </tr>
     </thead>
 <!-- looping over a list of events as strings, in our table. Need to change to reflect list
@@ -27,6 +28,7 @@
         which is private, so you need getters-->
     <tr th:block th:each="event : ${events}">
        <td th:text="${event.name}"></td>
+        <td th:text="${event.description}"></td><!--added video 2.2-->
     </tr>
 
 
