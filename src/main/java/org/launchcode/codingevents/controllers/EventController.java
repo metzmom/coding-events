@@ -44,17 +44,33 @@ public class EventController {
    //lives at /events/create
    @PostMapping("create")//create a new event from a form submission
    public String createEvent(@RequestParam String eventName,
-                             @RequestParam String eventDescription){//added event
+                             @RequestParam String eventDescription) {//added event
        // Description added in video 2.2
-     // events.add(eventName);//take this out as it was a lists of strings but is now a list of objects
-    //  events.add(new Event(eventName, eventDescription));//now takes an Event object.creates new event
+       // events.add(eventName);//take this out as it was a lists of strings but is now a list of objects
+       //  events.add(new Event(eventName, eventDescription));//now takes an Event object.creates new event
        // object and passes it to a list // Description added in video 2.2
 
        //update to reflect the new EventData  video 2.4
        EventData.add(new Event(eventName, eventDescription));
-      return "redirect:";//do not need /events after : as the path is still in events Controller
+       return "redirect:";//do not need /events after : as the path is still in events Controller
+   }
 
+   @GetMapping("delete")//creating a delete form
+   public String displayDeleteEventForm(Model model) {
+      model.addAttribute("title", "Delete Events");//gives a title to page
+      model.addAttribute("events", EventData.getAll());//pass in a collection of events
+      return "events/delete";
+   }
+   @PostMapping("delete")
+   public String processDeleteEventsForm(@RequestParam(required = false) int[] eventIds) {//eventIds must match form
+       // element in template
 
+        if (eventIds != null) {//if no boxes are checked
+            for (int id : eventIds) {
+                EventData.remove(id);
+            }
+        }
+           return "redirect:";//normally is path, but we are going to index
 
 
    }

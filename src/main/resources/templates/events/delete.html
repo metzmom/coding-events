@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class ="container">
+
+<h1>DELETE Event X deHtml</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<form method="post"><!--//will usually use POST when working with forms-->
+
+     <th:block th:each="event : ${events}"><!--//loop over event collection it is passed in-->
+         <div class="form-group">
+         <label>
+            <span th:text="${event.name}"></span>
+            <input type="checkbox" name="eventIds" th:value="${event.id}" class="form-control">
+            <!--//inserting the checkbox for the form. Every checked box will have same name, so
+            send collection of eventIds. Value will be data submitted if check box is selected.
+            Class is bootstrap class by identifying the id. will be same as id need the th:-->
+         </label>
+         </div>
+     </th:block>
+<!--//this is the button for the form-->
+   <input type="submit" value="Delete deHtml" class="btn btn-danger"><!--class is bootstrap class indicator-->
+</form>
+
+</body>
+</html>
