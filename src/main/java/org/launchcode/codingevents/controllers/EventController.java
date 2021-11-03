@@ -38,6 +38,7 @@ public class EventController {
    @GetMapping("create")
    public String displayCreateEventForm(Model model) {
        model.addAttribute("title", "Create Event");
+       model.addAttribute("event", new Event());
       return "events/create";
    }
 
@@ -49,7 +50,8 @@ public class EventController {
 // add for error message to appear on form video 3.2
        if(errors.hasErrors()) {
            model.addAttribute("title", "Create Event");
-           model.addAttribute("errorMsg", "Bad data! EC called by create.html");
+         //  model.addAttribute("errorMsg", "Bad data! EC called by create.html");
+         //  Can remove this with addition of thymeleaf in create.html video 3.3
            return "events/create";
        }
 

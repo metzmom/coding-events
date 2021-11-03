@@ -24,7 +24,7 @@ public class Event {
     @Size(max = 500, message = "Description too long!")//validation added video 7
     private String description;//this name must match on forms in create.html
 
-    @NotBlank
+    @NotBlank(message = "Email is required.")
     @Email(message = "Invalid email. Try again.")//add email video 7
     private String contactEmail;
 
@@ -36,7 +36,10 @@ public class Event {
         this.contactEmail = contactEmail;//added to constructor in video 7
         this.id = nextId;//video 2.3  constructor for id and increments id
         nextId++;
+
     }
+    public Event(){}
+
     public int getId() {//no setter...do not want anyone to change.
         return id;
         // No get/set for nextId since private and we want no one to change it
