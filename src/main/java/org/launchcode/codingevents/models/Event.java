@@ -24,6 +24,7 @@ public class Event {
     @Size(max = 500, message = "Description too long!")//validation added video 7
     private String description;//this name must match on forms in create.html
 
+    @NotBlank
     @Email(message = "Invalid email. Try again.")//add email video 7
     private String contactEmail;
 

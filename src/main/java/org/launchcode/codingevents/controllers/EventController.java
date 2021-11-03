@@ -4,8 +4,10 @@ import org.launchcode.codingevents.data.EventData;
 import org.launchcode.codingevents.models.Event;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +44,15 @@ public class EventController {
    //lives at /events/create
    @PostMapping("create")//create a new event from a form submission
 
-   public String createEvent(@ModelAttribute Event newEvent) {//model binding video 2.6
+   public String createEvent(@ModelAttribute @Valid Event newEvent,
+                             Errors errors, Model model) {//model binding video 2.6
+// add for error message to appear on form video 3.2
+       if(errors.hasErrors()) {
+           model.addAttribute("title", "Create Event");
+           model.addAttribute("errorMsg", "Bad data! EC called by create.html");
+           return "events/create";
+       }
+
       EventData.add(newEvent);
       // public String createEvent(@RequestParam String eventName,
                          //    @RequestParam String eventDescription) {

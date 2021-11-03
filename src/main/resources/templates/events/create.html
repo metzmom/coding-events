@@ -7,6 +7,8 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
+<p th:text="${errorMsg}" style="color:red;"></p> <!--video 3.2 error message will appear on form-->
+
 <!--creates the input form to add a new event-->
 <form method ="post" action="/events/create">
    <div class ="form-group">
