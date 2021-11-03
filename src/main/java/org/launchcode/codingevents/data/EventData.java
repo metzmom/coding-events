@@ -9,7 +9,7 @@ import java.util.Map;
 //class for storing event objects
 public class EventData {
 //need a place to put my events. static only one, declared to be type map,
-  //  map interface allows key /value pairs. Map object will store integer event pairs,
+  //  map interface allows key /value pairs. Map is an interface Map object will store integer event pairs,
   //  integers are the ids. will be easier to retrieve using ID, by just giving it it's id
 // ****  new hash maps will be run when first loaded into memory
     private static final Map<Integer, Event> events = new HashMap<>();

@@ -9,6 +9,12 @@ public class Event {
     // not any single object. so every new object will be upped by one and be unique
     // see public constructor
 
+    
+
+
+
+
+
     private String name;//this name must match on forms in create.html video 6
     private String description;//this name must match on forms in create.html
 

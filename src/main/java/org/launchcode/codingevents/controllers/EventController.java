@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("events")
 public class EventController {
   // private static List<String> events = new ArrayList<>();  took this out and replaced with list<Events> to reference
-  // new Event.java class
+  // new EventData.java class
   // private static List<Event> events = new ArrayList<>();//****this is where we were storing the list.  take
     // ***it out in video 2.4 as we created the EventData class to model the list
    @GetMapping
@@ -24,17 +24,18 @@ public class EventController {
 //      events.add("Bachelor Party");
 //      events.add("Reception");
       model.addAttribute("title","All Events");
-      //model.addAttribute("events", events);//This controller is going
+       //model.addAttribute("events", events);//This controller is going
        // to pass in a collection of all events into the template to be displayed.
        // Replace it with the EventData.getAll
-       model.addAttribute("events", EventData.getAll());//calling a static method EventData
+      model.addAttribute("events", EventData.getAll());//calling a static method EventData
       return "events/index";//need to change this view in index.html
 
 
    }
    //lives at /events/create
    @GetMapping("create")
-   public String displayCreateEventForm() {
+   public String displayCreateEventForm(Model model) {
+       model.addAttribute("title", "Create Event");
       return "events/create";
    }
 
