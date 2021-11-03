@@ -1,5 +1,8 @@
 package org.launchcode.codingevents.models;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 public class Event {
@@ -9,20 +12,27 @@ public class Event {
     // not any single object. so every new object will be upped by one and be unique
     // see public constructor
 
-    
 
 
 
 
-
+    @NotBlank(message = "Name is required.")
+    @Size (min = 3, max = 50,message = "Name must be between 3 and 50 characters")
     private String name;//this name must match on forms in create.html video 6
+
+
+    @Size(max = 500, message = "Description too long!")//validation added video 7
     private String description;//this name must match on forms in create.html
+
+    @Email(message = "Invalid email. Try again.")//add email video 7
+    private String contactEmail;
 
 
 //all of this was made with the generator.right click and choose generator
-    public Event(String name, String description) {
+    public Event(String name, String description, String contactEmail) {//added contact email in video 7
         this.name = name;
         this.description = description;
+        this.contactEmail = contactEmail;//added to constructor in video 7
         this.id = nextId;//video 2.3  constructor for id and increments id
         nextId++;
     }
@@ -46,7 +56,16 @@ public class Event {
     public void setDescription(String description) {
         this.description = description;
     }
-   @Override
+
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    public void setContactEmail(String contactEmail) {//add get/set for contactEmail
+        this.contactEmail = contactEmail;
+    }
+
+    @Override
    public String toString() {
         return  name ;
     }
