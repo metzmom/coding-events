@@ -1,8 +1,10 @@
 package org.launchcode.codingevents.controllers;
 
 import org.launchcode.codingevents.data.EventData;
+import org.launchcode.codingevents.data.EventRepository;
 import org.launchcode.codingevents.models.Event;
 import org.launchcode.codingevents.models.EventType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -19,6 +21,18 @@ public class EventController {
   // new EventData.java class
   // private static List<Event> events = new ArrayList<>();//****this is where we were storing the list.  take
     // ***it out in video 2.4 as we created the EventData class to model the list
+
+
+    @Autowired//auto populates by spring dependency injection
+    private EventRepository eventRepository;
+   // commands we want to try:  findAll, save, findById  all methods part of interface
+  //to find usage  right click and click on usage
+
+
+
+
+
+
    @GetMapping
    public String displayAllEvents(Model model) {//stores event objects not ideal with models
 //      List<String> events = new ArrayList<>();
@@ -30,7 +44,11 @@ public class EventController {
        //model.addAttribute("events", events);//This controller is going
        // to pass in a collection of all events into the template to be displayed.
        // Replace it with the EventData.getAll
-      model.addAttribute("events", EventData.getAll());//calling a static method EventData
+     // model.addAttribute("events", EventData.getAll());//calling a static method EventData
+       model.addAttribute("events", eventRepository.findAll());//eventRepository.findAll());
+       // does same as EventData.getAll()), but done by Springboot
+
+
       return "events/index";//need to change this view in index.html
 
 
@@ -57,7 +75,11 @@ public class EventController {
            return "events/create";
        }
 
-      EventData.add(newEvent);
+            eventRepository.save(newEvent);
+     //  EventData.add(newEvent); this creates and saves a new event object
+       //  so need to replace with eventRepository.save(newEvent); and new event will be saved
+
+
       // public String createEvent(@RequestParam String eventName,
                          //    @RequestParam String eventDescription) {
       // ***Remove the RequestParam and put in @ModelAttribute Event newEvent)
@@ -70,13 +92,14 @@ public class EventController {
        //update to reflect the new EventData  video 2.4
        //This can be removed by Model binding video 2.6
        //EventData.add(new Event(eventName, eventDescription));
-       return "redirect:";//do not need /events after : as the path is still in events Controller
+             return "redirect:";//do not need /events after : as the path is still in events Controller
    }
 
    @GetMapping("delete")//creating a delete form
    public String displayDeleteEventForm(Model model) {
       model.addAttribute("title", "Delete Events");//gives a title to page
-      model.addAttribute("events", EventData.getAll());//pass in a collection of events
+     // model.addAttribute("events", EventData.getAll());//pass in a collection of events
+       model.addAttribute("events", eventRepository.findAll());//replace with springboot
       return "events/delete";
    }
    @PostMapping("delete")
@@ -85,7 +108,8 @@ public class EventController {
 
         if (eventIds != null) {//if no boxes are checked
             for (int id : eventIds) {
-                EventData.remove(id);
+                eventRepository.deleteById(id);
+               // EventData.remove(id); this is replaced by springboot eventRepository.deleteById(id)
             }
         }
            return "redirect:";//normally is path, but we are going to index
