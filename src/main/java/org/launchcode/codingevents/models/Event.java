@@ -1,16 +1,26 @@
 package org.launchcode.codingevents.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
+
+
+@Entity
 public class Event {
     //video 2.4 assigning a unique identifier
+    @Id
+    @GeneratedValue
     private int id;//private id field.Private so no one can edit
-    private static int nextId = 1;//static counter  belongs to class,
+   // private static int nextId = 1;//static counter  belongs to class,
     // not any single object. so every new object will be upped by one and be unique
     // see public constructor
+    //THIS ITERATION private static int nextId = 1;IS REMOVED BECAUSE
+    // OF THE @id AND @GENERATEDVALUE FOR PERSISTENT MODEL
 
 
 
@@ -33,7 +43,8 @@ public class Event {
 
 //all of this was made with the generator.right click and choose generator
     public Event(String name, String description, String contactEmail, EventType type) {//added contact email in video 7
-        this();//calls a different constructor within the same class. this one calls the no arg construct on line 46
+        //this(): is not needed since id is being set with persistent class video 4.2
+        //  this();//calls a different constructor within the same class. this one calls the no arg construct on line 46
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;//added to constructor in video 7
@@ -43,10 +54,12 @@ public class Event {
                       //  add this(); above -- calls a different constructor within the same class
 
     }
-    public Event(){
-        this.id = nextId;//video 2.3  constructor for id and increments id
-        nextId++;
-    }
+    public Event(){}//ALWAYS NEED AN EMPTY (NO ARG) CONSTRUCTOR WITH PERSISTENT CLASS
+        //THIS ITERATION this.id = nextId; nextId++;;IS REMOVED BECAUSE
+        // OF THE @id AND @GENERATEDVALUE FOR PERSISTENT MODEL.  YOU STILL NEED THE CONSTRUCTOR
+       // this.id = nextId;//video 2.3  constructor for id and increments id
+        //nextId++;
+
 
     public int getId() {//no setter...do not want anyone to change.
         return id;
