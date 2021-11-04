@@ -28,17 +28,25 @@ public class Event {
     @Email(message = "Invalid email. Try again.")//add email video 7
     private String contactEmail;
 
+    private EventType type;
+
 
 //all of this was made with the generator.right click and choose generator
-    public Event(String name, String description, String contactEmail) {//added contact email in video 7
+    public Event(String name, String description, String contactEmail, EventType type) {//added contact email in video 7
+        this();//calls a different constructor within the same class. this one calls the no arg construct on line 46
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;//added to constructor in video 7
-        this.id = nextId;//video 2.3  constructor for id and increments id
-        nextId++;
+        this.type = type;
+      //  this.id = nextId;//video 2.3  constructor for id and increments id
+      //  nextId++;  MOVE THESE @ LINES TO public EVENT(){  BELOW and
+                      //  add this(); above -- calls a different constructor within the same class
 
     }
-    public Event(){}
+    public Event(){
+        this.id = nextId;//video 2.3  constructor for id and increments id
+        nextId++;
+    }
 
     public int getId() {//no setter...do not want anyone to change.
         return id;
@@ -67,6 +75,13 @@ public class Event {
 
     public void setContactEmail(String contactEmail) {//add get/set for contactEmail
         this.contactEmail = contactEmail;
+    }
+    public EventType getType() {
+        return type;
+    }
+
+    public void setType(EventType type) {
+        this.type = type;
     }
 
     @Override

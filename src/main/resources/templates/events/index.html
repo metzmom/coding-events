@@ -18,6 +18,7 @@
             <th>Name evIndHtml</th>
             <th>Description evIndHtml</th><!--added video 2.2-->
             <th>Contact Email evIndHtml</th><!--added video 3.1-->
+            <th>Type</th><!--added from ENUM-->
         </tr>
     </thead>
 <!-- looping over a list of events as strings, in our table. Need to change to reflect list
@@ -33,6 +34,7 @@
         <td th:text="${event.name}"></td>
         <td th:text="${event.description}"></td><!--added video 2.2-->
         <td th:text="${event.contactEmail}"></td><!--added video 3.1-->
+        <td th:text="${event.type.displayName}"></td><!--added from ENUM-->
     </tr>
 
 

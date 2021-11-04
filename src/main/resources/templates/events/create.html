@@ -42,6 +42,16 @@
         <p class="error" th:errors="${event.contactEmail}"></p><!--thymleaf valid video 3.3  Insert any error messages
        associates with this section here-->
     </div>
+    <div class="form-group"><!--this is the button or dropdown for the ENUM-->
+        <label>Type   <!--this is a loop-->
+            <select th:field="${event.type}">
+                <option th:each="type : ${types}"
+                        th:value="${type}"
+                        th:text="${type.displayName}"
+                ></option>
+            </select>
+        </label>
+    </div>
    <div class ="form-group">
           <input type="submit" name="Create Event" class="btn btn-success">
    </div>
